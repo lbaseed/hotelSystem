@@ -48,7 +48,7 @@
                                 <td>
                                     <a href="{{ url('roomtype/'.$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('roomtype/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ url('roomtype/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -63,7 +63,7 @@
 
 </div>
 
-<!-- Delete Modal-->
+{{-- <!-- Delete Modal-->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -86,7 +86,7 @@ aria-hidden="true">
         </div>
     </div>
 </div>
-</div>
+</div> --}}
 <!-- /.container-fluid -->
 
         @section("scripts")
