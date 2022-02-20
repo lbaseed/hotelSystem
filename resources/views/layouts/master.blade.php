@@ -15,6 +15,12 @@
     <title>{{ config('app.name') }}</title>
     <base href="{{ \URL::to('/') }}" />
 
+    @if(!Session::has("adminData"))
+        <script type="text/javascript">
+            window.location.href = "{{ url('login') }}";
+        </script>
+    @endif
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -48,8 +54,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ '/' == request()->path() ? 'active' : '' }}">
-                <a class="nav-link" href="/">
+            <li class="nav-item {{ 'admin' == request()->path() ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -102,9 +108,15 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">customer components:</h6>
                         <a class="collapse-item {{ request()->is('customer/create') ? 'active' : '' }}" href="customer/create">Add New Customer</a>
-                        <a class="collapse-item {{ request()->is('customer') ? 'active' : '' }}" href="customer">View All Rooms</a>
+                        <a class="collapse-item {{ request()->is('customer') ? 'active' : '' }}" href="customer">View All Customers</a>
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item {{ '/' == request()->path() ? 'active' : '' }}">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -439,7 +451,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{ url('logout') }}">Logout</a>
                 </div>
             </div>
         </div>

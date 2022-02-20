@@ -45,7 +45,7 @@ class CustomerController extends Controller
         ]);
 
         $imgpath = $fields->file('photo')->store('public/customer/images');
-
+        $imgpath = substr($imgpath, 7);
         $data = new Customer;
         $data->fullname = $fields->fullname;
         $data->email = $fields->email;

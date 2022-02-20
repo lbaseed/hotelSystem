@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CustomerController;
@@ -16,9 +17,17 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
-Route::get('/', function () {
+// Authentication
+Route::get('login', [AdminController::class, 'login']);
+Route::get('logout', [AdminController::class, 'logout']);
+Route::post('login', [AdminController::class, 'check_login']);
+
+// Admin Dashbaord
+Route::get('admin', function () {
     return view('landing');
 });
+Route::get('/', [AdminController::class, 'index']);
+
 
 // RoomType Routes
 Route::resource('roomtype', RoomTypeController::class);
@@ -33,5 +42,6 @@ Route::resource('customer', CustomerController::class);
 Route::get('customer/{id}/delete', [CustomerController::class, 'destroy']);
 
 
+ 
 
 
