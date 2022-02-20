@@ -30,7 +30,7 @@ Route::get('rooms/{id}/delete', [RoomController::class, 'destroy']);
 
 // customer routes
 Route::resource('customer', CustomerController::class);
-Route::get('rooms/{id}/delete', [RoomController::class, 'destroy']);
+Route::get('customer/{id}/delete', [CustomerController::class, 'destroy']);
 
 
 

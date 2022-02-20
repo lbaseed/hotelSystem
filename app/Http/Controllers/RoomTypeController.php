@@ -42,6 +42,7 @@ class RoomTypeController extends Controller
         $data = new RoomType;
         $data->title = $request->title;
         $data->detail = $request->detail;
+        $data->price = $request->price;
         $data->save();
 
         return redirect("/roomtype/create")->with("success", "Room Type Added Successfully");
@@ -86,6 +87,7 @@ class RoomTypeController extends Controller
         $data = RoomType::find($id);
         $data->title = $request->title;
         $data->detail = $request->detail;
+        $data->price = $request->price;
         $data->save();
 
         return redirect("/roomtype/$id")->with("success", "Room Type updated Successfully");

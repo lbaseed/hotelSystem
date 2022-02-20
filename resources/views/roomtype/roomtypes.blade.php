@@ -10,7 +10,7 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Room Type</h1>
-
+ 
     <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -28,6 +28,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -45,6 +47,7 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $item->title }}</td>
+                                <td>{{ $item->price }}</td>
                                 <td>
                                     <a href="{{ url('roomtype/'.$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('roomtype/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

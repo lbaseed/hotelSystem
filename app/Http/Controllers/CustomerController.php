@@ -44,7 +44,7 @@ class CustomerController extends Controller
             'phone' => 'required',
         ]);
 
-        $imgpath = $fields->file('photo')->store('customer/images');
+        $imgpath = $fields->file('photo')->store('public/customer/images');
 
         $data = new Customer;
         $data->fullname = $fields->fullname;
@@ -100,19 +100,24 @@ class CustomerController extends Controller
             'phone' => 'required',
         ]);
 
-        if($fields->hasFile('photo')){
-        $imgpath = $fields->file('photo')->store('public/customer/images');
-        $imgpath = substr($imgpath, 7);
-        }else{
-            $imgpath = $fields->prev_photo;
-        }
-
         $data = Customer::find($id);
         $data->fullname = $fields->fullname;
         $data->email = $fields->email;
         $data->phone = $fields->phone;
         $data->address = $fields->address;
-        $data->photo = $imgpath;
+
+        if($fields->hasFile('photo')){
+            $imgpath = $fields->file('photo')->store('public/customer/images');
+            $imgpath = substr($imgpath, 7);
+            // delete prev pic
+            $pic = public_path('storage/'.$data->photo);
+            if(file_exists($pic)){
+                unlink($pic);
+            }
+            $data->photo = $imgpath;
+            }else{
+                $imgpath = $fields->prev_photo;
+            }
         
         $data->save();
         return redirect("/customer/$id")->with("success", "Customer updated Successfully");
@@ -129,6 +134,14 @@ class CustomerController extends Controller
     {
         // delete item from database
 
+        // delete pic first
+        $data = Customer::find($id);
+        $pic = public_path('storage/'.$data->photo);
+            if(file_exists($pic)){
+                unlink($pic);
+            }
+
+        // now delete customer
         Customer::where('id',$id)->delete();
         return redirect("customer")->with("success", "Item Deleted Successfully");
     }

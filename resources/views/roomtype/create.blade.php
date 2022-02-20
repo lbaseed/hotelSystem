@@ -17,7 +17,7 @@
         <div class="card-body">
             @if (Session::has("success"))
                 <p class="text-success">{{ session("success") }}</p>
-            @endif
+         @endif
             <div class="table-responsive">
                 <form action="{{ url("/roomtype") }}" method="POST">
                     @csrf
@@ -27,6 +27,10 @@
                             <tr>
                                 <th>Title</th>
                                 <td><input type="text" autocomplete="off"  class="form-control" name="title" /></td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td><input type="text" autocomplete="off" class="form-control" name="price" /></td>
                             </tr>
                             <tr>
                                 <th>Details</th>

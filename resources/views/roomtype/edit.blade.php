@@ -4,7 +4,7 @@
 
 <!-- container-fluid -->
 <div class="container-fluid">
-
+ 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Edit Room Type</h1>
 
@@ -29,6 +29,10 @@
                             <tr>
                                 <th>Title</th>
                                 <td><input type="text" autocomplete="off" value="{{ $data->title }}" class="form-control" name="title" /></td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td><input type="text" autocomplete="off" value="{{ $data->price }}" class="form-control" name="price" /></td>
                             </tr>
                             <tr>
                                 <th>Details</th>

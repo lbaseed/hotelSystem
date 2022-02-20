@@ -9,7 +9,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Customer</h1>
+    <h1 class="h3 mb-4 text-gray-800">Customers</h1>
 
     <!-- DataTables -->
     <div class="card shadow mb-4">
