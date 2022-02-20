@@ -21,6 +21,8 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -57,27 +59,56 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Configurations
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            <li class="nav-item {{ request()->is('roomtype*') ? 'active' : '' }}">
+                <a class="nav-link {{ !request()->is('roomtype*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#roomtypeNav"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Room Type</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="roomtypeNav" class="collapse {{ request()->is('roomtype*') ? 'show' : '' }} " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Room type components:</h6>
+                        <a class="collapse-item {{ request()->is('roomtype/create') ? 'active' : '' }}" href="roomtype/create">Add New Room Type</a>
+                        <a class="collapse-item {{ request()->is('roomtype') ? 'active' : '' }}" href="roomtype">View All Types</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item {{ request()->is('rooms*') ? 'active' : '' }}">
+                <a class="nav-link {{ !request()->is('rooms*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#roomNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Rooms</span>
+                </a>
+                <div id="roomNav" class="collapse {{ request()->is('rooms*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Rooms components:</h6>
+                        <a class="collapse-item {{ request()->is('rooms/create') ? 'active' : '' }}" href="rooms/create">Add New Room</a>
+                        <a class="collapse-item {{ request()->is('rooms') ? 'active' : '' }}" href="rooms">View All Rooms</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item {{ request()->is('customer*') ? 'active' : '' }}">
+                <a class="nav-link {{ !request()->is('customer*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#customerNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Customer</span>
+                </a>
+                <div id="customerNav" class="collapse {{ request()->is('customer*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">customer components:</h6>
+                        <a class="collapse-item {{ request()->is('customer/create') ? 'active' : '' }}" href="customer/create">Add New Customer</a>
+                        <a class="collapse-item {{ request()->is('customer') ? 'active' : '' }}" href="customer">View All Rooms</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            {{-- <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -93,18 +124,18 @@
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            {{-- <hr class="sidebar-divider"> --}}
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            {{-- <div class="sidebar-heading">
                 Addons
-            </div>
+            </div> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -137,7 +168,7 @@
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -157,7 +188,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-gray-400 topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-transparent topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -417,6 +448,8 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

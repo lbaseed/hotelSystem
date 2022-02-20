@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,15 @@ Route::get('/', function () {
 // RoomType Routes
 Route::resource('roomtype', RoomTypeController::class);
 Route::get('roomtype/{id}/delete', [RoomTypeController::class, 'destroy']);
+
+// Room routes
+Route::resource('rooms', RoomController::class);
+Route::get('rooms/{id}/delete', [RoomController::class, 'destroy']);
+
+// customer routes
+Route::resource('customer', CustomerController::class);
+Route::get('rooms/{id}/delete', [RoomController::class, 'destroy']);
+
 
 
 
