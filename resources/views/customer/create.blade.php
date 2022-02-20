@@ -45,7 +45,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Picture</label>
-                        <input type="file" autocomplete="off" class="form-control" id="photo" name="photo" placeholder="phone">
+                        <input type="file" autocomplete="off" class="form-control" id="photo" name="photo">
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>

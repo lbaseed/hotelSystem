@@ -100,12 +100,19 @@ class CustomerController extends Controller
             'phone' => 'required',
         ]);
 
+        if($fields->hasFile('photo')){
+        $imgpath = $fields->file('photo')->store('public/customer/images');
+        $imgpath = substr($imgpath, 7);
+        }else{
+            $imgpath = $fields->prev_photo;
+        }
+
         $data = Customer::find($id);
         $data->fullname = $fields->fullname;
         $data->email = $fields->email;
         $data->phone = $fields->phone;
         $data->address = $fields->address;
-        
+        $data->photo = $imgpath;
         
         $data->save();
         return redirect("/customer/$id")->with("success", "Customer updated Successfully");
@@ -123,6 +130,6 @@ class CustomerController extends Controller
         // delete item from database
 
         Customer::where('id',$id)->delete();
-        return redirect("customers")->with("success", "Item Deleted Successfully");
+        return redirect("customer")->with("success", "Item Deleted Successfully");
     }
 }

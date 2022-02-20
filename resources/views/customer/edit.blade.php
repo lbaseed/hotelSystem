@@ -16,11 +16,18 @@
             </h6>
         </div>
         <div class="card-body">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ $error }} 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endforeach
+            @endif
             @if (Session::has("success"))
                 <p class="text-success">{{ session("success") }}</p>
             @endif
             <div class="col-sm-12 col-lg-8">
-                <form action="{{ url("/customer/".$data->id) }}" method="POST">
+                <form action="{{ url("customer/".$data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">
@@ -34,6 +41,18 @@
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number *</label>
                         <input type="text" autocomplete="off" class="form-control" value="{{ $data->phone }}" id="phone" name="phone" placeholder="phone">
+                    </div>
+                    <div class="row">
+                        <div class="mb-3">
+                            <div class="col-sm-12 col-lg-6 align-items-center">
+                            <label for="photo" class="form-label">Picture</label>
+                            <input type="file" autocomplete="off" class="form-control" id="photo" name="photo">
+                            <input type="hidden" name="prev_photo" value="{{ $data->photo }}" />
+                            </div>
+                            <div class="float-right">
+                            <img src="{{ asset('storage/'.$data->photo) }}" width="100" height="100" class="rounded-circle" />
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
