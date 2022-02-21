@@ -13,4 +13,8 @@ class RoomType extends Model
         'title',
         'detail'
     ];
+
+    function roomtypeimages(){
+        return $this->hasMany(Roomtypeimage::class, 'room_type_id');
+    }
 }
