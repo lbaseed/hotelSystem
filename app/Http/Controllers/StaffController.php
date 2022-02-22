@@ -161,4 +161,9 @@ class StaffController extends Controller
         Staff::where('id',$id)->delete();
         return redirect("staff")->with("success", "Item Deleted Successfully");
     }
+
+    function add_payment($id){
+
+        return view("staffpayment.add");
+    }
 }

@@ -48,6 +48,9 @@ Route::get('customer/{id}/delete', [CustomerController::class, 'destroy']);
 Route::resource('staff', StaffController::class);
 Route::get('staff/{id}/delete', [StaffController::class, 'destroy']);
 
+// staff payments
+Route::get('staff/payment/{id}/add', [StaffController::class, 'add_payment']);
+
 // Department Routes
 Route::resource('department', StaffDepartment::class);
 Route::get('department/{id}/delete', [StaffDepartment::class, 'destroy']);

@@ -61,6 +61,7 @@
                                 <td>
                                     <a href="{{ url('staff/'.$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('staff/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ url('staff/payment/'.$item->id.'/add') }}" class="btn btn-success btn-sm"><i class="fa fa-credit-card"></i></a>
                                     <a href="{{ url('staff/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
