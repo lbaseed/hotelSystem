@@ -45,7 +45,7 @@
                             </tr>
                             <tr>
                                 <th>Gallery</th>
-                                <td><input type="file" multiple name="imgs[]" /></td>
+                                <td><input type="file" multiple name="imgs[]" class="form-control" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2"><input type="submit" class="btn btn-primary" name="submit" value="Add" /></td>

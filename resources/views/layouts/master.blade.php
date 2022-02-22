@@ -98,6 +98,21 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item {{ request()->is('department*') ? 'active' : '' }}">
+                <a class="nav-link {{ !request()->is('department*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#departmentNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Departments</span>
+                </a>
+                <div id="departmentNav" class="collapse {{ request()->is('department*') ? 'show' : '' }} " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Room type components:</h6>
+                        <a class="collapse-item {{ request()->is('department/create') ? 'active' : '' }}" href="department/create">Add New Department</a>
+                        <a class="collapse-item {{ request()->is('department') ? 'active' : '' }}" href="department">View All Departments</a>
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item {{ request()->is('customer*') ? 'active' : '' }}">
                 <a class="nav-link {{ !request()->is('customer*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#customerNav"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -109,6 +124,20 @@
                         <h6 class="collapse-header">customer components:</h6>
                         <a class="collapse-item {{ request()->is('customer/create') ? 'active' : '' }}" href="customer/create">Add New Customer</a>
                         <a class="collapse-item {{ request()->is('customer') ? 'active' : '' }}" href="customer">View All Customers</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item {{ request()->is('staff*') ? 'active' : '' }}">
+                <a class="nav-link {{ !request()->is('staff*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#staffNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Staff</span>
+                </a>
+                <div id="staffNav" class="collapse {{ request()->is('staff*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">staff components:</h6>
+                        <a class="collapse-item {{ request()->is('staff/create') ? 'active' : '' }}" href="staff/create">Add New Staff</a>
+                        <a class="collapse-item {{ request()->is('staff') ? 'active' : '' }}" href="staff">View All Staffs</a>
                     </div>
                 </div>
             </li>

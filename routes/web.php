@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\StaffDepartment;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,7 @@ Route::get('/', [AdminController::class, 'index']);
 // RoomType Routes
 Route::resource('roomtype', RoomTypeController::class);
 Route::get('roomtype/{id}/delete', [RoomTypeController::class, 'destroy']);
+Route::get('roomtypeimage/{id}/delete', [RoomTypeController::class, 'destroy_image']);
 
 // Room routes
 Route::resource('rooms', RoomController::class);
@@ -41,6 +44,13 @@ Route::get('rooms/{id}/delete', [RoomController::class, 'destroy']);
 Route::resource('customer', CustomerController::class);
 Route::get('customer/{id}/delete', [CustomerController::class, 'destroy']);
 
+// Staff Routes
+Route::resource('staff', StaffController::class);
+Route::get('staff/{id}/delete', [StaffController::class, 'destroy']);
+
+// Department Routes
+Route::resource('department', StaffDepartment::class);
+Route::get('department/{id}/delete', [StaffDepartment::class, 'destroy']);
 
  
 

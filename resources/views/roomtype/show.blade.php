@@ -14,7 +14,7 @@
     <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Room Type
+            <h6 class="m-0 font-weight-bold text-primary">{{ $data->title }}
             <a href="{{ url("/roomtype/create") }}" class="float-right btn btn-success btn-md mr-5">Add Room Type</a> 
             <a href="{{ url("/roomtype") }}" class="float-right btn btn-success btn-md mr-5">View All</a>
         </h6>
@@ -31,10 +31,30 @@
                            
                             <tr>
                                
+                                <th style="min-width: 200px">Room Type</th>
                                 <th>{{ $data->title }}</th>
+                            </tr>
+                            <tr>
+                                <th>Room Type Detail</th>
                                 <td>{{ $data->detail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Price NGN</th>
                                 <td>{{ $data->price }}</td>
-                                
+                            </tr>
+                            <tr>
+                                <th>Gallery Images</th>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            @foreach ($data->roomtypeimages as $img)
+                                                <td>
+                                                    <img src="{{ asset('storage/'.$img->img_src) }}" width="100" height="100" />
+                                                </td>
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                </td>
                             </tr>
                             
                         @endif

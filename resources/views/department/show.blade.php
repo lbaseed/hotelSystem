@@ -9,14 +9,14 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Customer</h1>
+    <h1 class="h3 mb-4 text-gray-800">Department</h1>
 
     <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Profile: [ {{ $data->fullname }} ]
-            <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-5">Add Customer</a> 
-            <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-5">View All</a>
+            <h6 class="m-0 font-weight-bold text-primary">{{ $data->title }}
+            <a href="{{ url("/department/create") }}" class="float-right btn btn-success btn-md mr-5">Add Department</a> 
+            <a href="{{ url("/department") }}" class="float-right btn btn-success btn-md mr-5">View All</a>
         </h6>
         </div>
         <div class="card-body">
@@ -32,35 +32,24 @@
                         @if ($data)
                            
                             <tr>
-                                <th>Full Name</th>
-                                <td>{{ $data->fullname }}</td>
-                                <td rowspan="4">
+                                <th>Title</th>
+                                <td>{{ $data->title }}</td>
+                                {{-- <td rowspan="4">
                                     <img src="{{ asset('storage/'.$data->photo) }}" width="200" height="200" class="rounded-circle" />
-                                </td>
+                                </td> --}}
                             </tr>
                             <tr>
-                                <th>Email</th>
-                                <td>{{ $data->email }}</td>
-                                <td></td>
+                                <th>Detail</th>
+                                <td>{{ $data->detail }}</td>
+                                
                             </tr>
-                            <tr>
-                                <th>Phone</th>
-                                <td>{{ $data->phone }}</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>Address</th>
-                                <td>{{ $data->address }}</td>
-                                <td></td>
-                            </tr>
-                            
                             
                         @endif
                         
                     </tbody>
                 </table>
-                <a href="{{ url('customer/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg"><i class="fa fa-edit"></i></a>
-                <a href="{{ url('customer/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></a>
+                <a href="{{ url('department/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg"><i class="fa fa-edit"></i></a>
+                <a href="{{ url('department/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></a>
             </div>
         </div>
     </div>
