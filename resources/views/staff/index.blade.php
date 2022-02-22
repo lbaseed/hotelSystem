@@ -32,7 +32,7 @@
                             <th>Full Name</th>
                             <th>Department</th>
                             <th>Phone</th>
-                            <th>Salary</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                             <th>Full Name</th>
                             <th>Department</th>
                             <th>Phone</th>
-                            <th>Salary</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -55,7 +55,9 @@
                                 <td>{{ $item->fullname }}</td>
                                 <td>{{ $item->department->title }}</td>
                                 <td>{{ $item->phone }}</td>
-                                <td>{{ $item->salary_amt }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/'.$item->photo) }}" width="50" height="50" class="rounded-circle" />
+                                </td>
                                 <td>
                                     <a href="{{ url('staff/'.$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('staff/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

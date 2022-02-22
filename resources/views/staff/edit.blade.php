@@ -69,11 +69,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="salary_type" class="form-label">Salary Type <span class="danger">*</span></label>
-                        <select class="form-control" id="salary_type" name="salary_type">
-                            <option {{ $data->salary_type ? "selected": "" }} value="{{ $data->salary_type ? $data->salary_type : ''}}">{{ $data->salary_type ? $data->salary_type : '-- Select Salary Type --' }}</option>
-                            <option value="daily">Daily</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
+                       
+
+                        <div class="form-check">
+                            <input type="radio" {{ $data->salary_type =='Daily'? 'checked':'' }} name="salary_type" class="form-check-input" value="Daily" /> Daily
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="salary_type" {{ $data->salary_type =='Monthly'? 'checked':'' }} class="form-check-input" value="Monthly" /> Monthly
+                        </div>  
                     </div>
                     <div class="mb-3">
                         <label for="salary_amt" class="form-label">Salary Amount <span class="danger">*</span></label>
