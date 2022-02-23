@@ -13,4 +13,8 @@ class Customer extends Model
         'fullname',
         'phone',
     ];
+
+    function bookings(){
+        return $this->hasMany(Booking::class);
+    }
 }

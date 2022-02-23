@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\StaffDepartment;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +60,8 @@ Route::resource('department', StaffDepartment::class);
 Route::get('department/{id}/delete', [StaffDepartment::class, 'destroy']);
 
  
-
+// Booking Routes
+Route::resource('booking', BookingController::class);
+Route::get('booking/{id}/delete', [BookingController::class, 'destroy']);
+Route::get('booking/{checkin_date}/available-rooms', [BookingController::class, 'available_rooms']);
 

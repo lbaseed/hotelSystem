@@ -142,6 +142,29 @@
                 </div>
             </li>
 
+             <!-- Divider -->
+             <hr class="sidebar-divider">
+
+             <!-- Heading -->
+             <div class="sidebar-heading">
+                 Business
+             </div>
+
+            <li class="nav-item {{ request()->is('booking*') ? 'active' : '' }}">
+                <a class="nav-link {{ !request()->is('booking*') ? 'collapsed' : '' }} " href="#" data-toggle="collapse" data-target="#bookingNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-hotel"></i>
+                    <span>Booking</span>
+                </a>
+                <div id="bookingNav" class="collapse {{ request()->is('booking*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">booking components:</h6>
+                        <a class="collapse-item {{ request()->is('booking/create') ? 'active' : '' }}" href="booking/create">Add New Booking</a>
+                        <a class="collapse-item {{ request()->is('booking') ? 'active' : '' }}" href="booking">View All Bookings</a>
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item {{ '/' == request()->path() ? 'active' : '' }}">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
