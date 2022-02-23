@@ -49,7 +49,10 @@ Route::resource('staff', StaffController::class);
 Route::get('staff/{id}/delete', [StaffController::class, 'destroy']);
 
 // staff payments
-Route::get('staff/payment/{id}/add', [StaffController::class, 'add_payment']);
+Route::get('staff/payment/{id}/create', [StaffController::class, 'add_payment']);
+Route::post('staff/payment/{id}', [StaffController::class, 'save_payment']);
+Route::get('staff/payment/{id}/{staff_id}/delete', [StaffController::class, 'delete_payment']);
+
 
 // Department Routes
 Route::resource('department', StaffDepartment::class);

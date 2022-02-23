@@ -11,8 +11,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Update {{ $data->fullname }}
-                <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-5">Add Room</a> 
-                <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-5">View All</a>
+                <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-2">Add Room</a> 
+                <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All</a>
             </h6>
         </div>
         <div class="card-body">

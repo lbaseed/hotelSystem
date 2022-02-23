@@ -15,15 +15,15 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">{{ $data->title }}
-            <a href="{{ url("/rooms/create") }}" class="float-right btn btn-success btn-md mr-5">Add Room</a> 
-            <a href="{{ url("/rooms") }}" class="float-right btn btn-success btn-md mr-5">View All Rooms</a>
+            <a href="{{ url("/rooms/create") }}" class="float-right btn btn-success btn-md mr-2">Add Room</a> 
+            <a href="{{ url("/rooms") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All Rooms</a>
         </h6>
         </div>
         <div class="card-body">
             @if (Session::has("success"))
                 <p class="text-success">{{ session("success") }}</p>
             @endif
-            <div class="table-responsive">
+            <div class="table-responsive col-lg-8">
                 <table class="table table-bordered">
                    
                     <tbody>
@@ -40,8 +40,8 @@
                         
                     </tbody>
                 </table>
-                <a href="{{ url('rooms/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg"><i class="fa fa-edit"></i></a>
-                <a href="{{ url('rooms/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></a>
+                <a href="{{ url('rooms/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg mb-2 mr-2"><i class="fa fa-edit"></i></a>
+                <a href="{{ url('rooms/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-lg mb-2 mr-2"><i class="fa fa-trash"></i></a>
             </div>
         </div>
     </div>

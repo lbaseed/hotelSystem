@@ -15,8 +15,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Profile: [ {{ $data->fullname }} ]
-            <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-5">Add Customer</a> 
-            <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-5">View All</a>
+            <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-2">Add Customer</a> 
+            <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All</a>
         </h6>
         </div>
         <div class="card-body">
@@ -25,7 +25,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <div class="col-sm-12 col-lg-8">
+            <div class="table-responsive col-sm-12 col-lg-8">
                 <table class="table table-borderless">
                    
                     <tbody>
@@ -59,8 +59,8 @@
                         
                     </tbody>
                 </table>
-                <a href="{{ url('customer/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg"><i class="fa fa-edit"></i></a>
-                <a href="{{ url('customer/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></a>
+                <a href="{{ url('customer/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg mb-2 mr-2"><i class="fa fa-edit"></i></a>
+                <a href="{{ url('customer/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-lg mb-2 mr-2"><i class="fa fa-trash"></i></a>
             </div>
         </div>
     </div>

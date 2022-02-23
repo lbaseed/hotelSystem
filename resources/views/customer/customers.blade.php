@@ -57,9 +57,9 @@
                                 <td>{{ $item->phone }}</td>
                                 <td>{{ $item->address }}</td>
                                 <td>
-                                    <a href="{{ url('customer/'.$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                    <a href="{{ url('customer/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a href="{{ url('customer/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ url('customer/'.$item->id) }}" class="btn btn-info btn-sm mb-2 mr-2"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ url('customer/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ url('customer/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-sm mb-2 mr-2"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -74,30 +74,6 @@
 
 </div>
 
-{{-- <!-- Delete Modal-->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">Are sure you want to delete this item?.</div>
-        <div class="modal-footer">
-            <form action="{{ url('room/'.$item->id) }}" method="post">
-            @csrf
-            @method('delete')
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger" >Delete</button>
-            </form>
-            
-        </div>
-    </div>
-</div>
-</div> --}}
 <!-- /.container-fluid -->
 
         @section("scripts")

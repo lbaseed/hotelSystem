@@ -14,9 +14,9 @@
     <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Profile: [ {{ $data->fullname }} ]
-            <a href="{{ url("/staff/create") }}" class="float-right btn btn-success btn-md mr-5">Add Staff</a> 
-            <a href="{{ url("/staff") }}" class="float-right btn btn-success btn-md mr-5">View All</a>
+            <h6 class="m-0 font-weight-bold text-primary">[ {{ $data->fullname }} ]
+            <a href="{{ url("/staff/create") }}" class="float-right btn btn-success btn-md mr-2">Add Staff</a> 
+            <a href="{{ url("/staff") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All</a>
         </h6>
         </div>
         <div class="card-body">
@@ -25,13 +25,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <div class="col-sm-12 col-lg-8">
+            <div class="table-responsive col-lg-8">
                 <table class="table table-borderless">
                    
                     <tbody>
                         @if ($data)
                             <tr>
-                                <th>Department</th>
+                                <th  style="min-width: 200px">Department</th>
                                 <td>{{ $data->department->title }}</td>
                                 <td></td>
                             </tr>
@@ -77,8 +77,9 @@
                         
                     </tbody>
                 </table>
-                <a href="{{ url('staff/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg"><i class="fa fa-edit"></i></a>
-                <a href="{{ url('staff/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></a>
+                <a href="{{ url('staff/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg mr-3"><i class="fa fa-edit"></i></a>
+                <a href="{{ url('staff/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-lg mr-3"><i class="fa fa-trash"></i></a>
+                <a href="{{ url('staff/payment/'.$data->id.'/create') }}"  class="btn btn-success btn-lg mr-2"><i class="fa fa-credit-card"></i></a>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use App\Models\StaffPayment;
 use App\Models\Department;
 
 class StaffController extends Controller
@@ -164,6 +165,25 @@ class StaffController extends Controller
 
     function add_payment($id){
 
-        return view("staffpayment.add");
+        $data = Staff::find($id);
+        $payments = StaffPayment::where('staff_id', $id)->get();
+        return view("staffpayment.create", ["staff_id"=>$id, "data"=>$data, "payments"=>$payments]);
+    }
+
+    function save_payment(Request $request, $staff_id){
+        $data = new StaffPayment;
+        $data->amount = $request->amount;
+        $data->staff_id = $staff_id;
+        $data->payment_date = $request->date;
+        $data->save();
+
+        return redirect("staff/payment/$staff_id/create")->with("success", "Payment Recorded Successfully");
+
+    }
+
+    function delete_payment($id, $staff_id){
+        StaffPayment::where('id', $id)->delete();
+        return redirect("staff/payment/$staff_id/create")->with("deleted", "Payment deleted Successfully");
+
     }
 }
