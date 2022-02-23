@@ -6,13 +6,13 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Edit Customer</h1>
+    <h1 class="h3 mb-4 text-gray-800">Edit Booking</h1>
 
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Update {{ $data->fullname }}
-                <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-2">Add Room</a> 
-                <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All</a>
+        <div class="card-header py-3">ss
+            <h6 class="m-0 font-weight-bold text-primary">Update Booking
+                <a href="{{ url("/booking/create") }}" class="float-right btn btn-success btn-md mr-2">Add Booking</a> 
+                <a href="{{ url("/booking") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All</a>
             </h6>
         </div>
         <div class="card-body">
@@ -27,39 +27,48 @@
                 <p class="text-success">{{ session("success") }}</p>
             @endif
             <div class="col-sm-12 col-lg-8">
-                <form action="{{ url("customer/".$data->id) }}" method="POST" enctype="multipart/form-data">
+                
+
+                <form action="{{ url("/booking") }}" method="POST" >
                     @csrf
                     @method("PUT")
                     <div class="mb-3">
-                        <label for="fullName" class="form-label">Full Name *</label>
-                        <input type="text" autocomplete="off" class="form-control" value="{{ $data->fullname }}" id="fullName" name="fullname" placeholder="full name">
+                        <label for="customer" class="form-label">Customer <span class="text-danger">*</span></label>
+                        <select autocomplete="off" class="form-control" id="customer" name="customer">
+                            <option>--- Select Customer ---</option>
+                            @foreach($customers as $customer)
+                                <option {{ $customer->id == $data->customer_id ? 'selected':'' }} value="{{ $customer->id }}">{{ $customer->fullname }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" autocomplete="off" class="form-control" value="{{ $data->email }}" name="email" id="email" placeholder="name@example.com">
+                        <label for="checkin" class="form-label">CheckIn Date <span class="text-danger">*</span></label>
+                        <input type="date" autocomplete="off" class="form-control checkin-date" name="checkin" id="checkin" value="{{ $data->checkin_date }}">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number *</label>
-                        <input type="text" autocomplete="off" class="form-control" value="{{ $data->phone }}" id="phone" name="phone" placeholder="phone">
-                    </div>
-                    <div class="row">
-                        <div class="mb-3">
-                            <div class="col-sm-12 col-lg-6 align-items-center">
-                            <label for="photo" class="form-label">Picture</label>
-                            <input type="file" autocomplete="off" class="form-control" id="photo" name="photo">
-                            <input type="hidden" name="prev_photo" value="{{ $data->photo }}" />
-                            </div>
-                            <div class="float-right">
-                            <img src="{{ asset('storage/'.$data->photo) }}" width="100" height="100" class="rounded-circle" />
-                            </div>
-                        </div>
+                        <label for="photo" class="form-label">Available Rooms <span class="text-danger">*</span></label>
+                        <select class="form-control room-list" id="room" name="room">
+                            <option value="{{ $data->room_id }}" selected>{{ $data->room->title }}</option>
+                            @foreach($arooms as $room)
+                                <option value="{{ $room->id }}">{{ $room->title}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <textarea class="form-control" id="address" name="address" rows="3">{{ $data->address }}</textarea>
+                        <label for="checkout" class="form-label">CheckOut Date</label>
+                        <input type="date" autocomplete="off" class="form-control" name="checkout" id="checkout" value="{{ $data->checkout_date }}">
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    
+                    <div class="mb-3">
+                        <label for="total_adult" class="form-label">Total Adult</label>
+                        <input type="text" autocomplete="off" class="form-control" id="total_adult" value="{{ $data->total_adult }}" name="total_adult">
+                    </div>
+                    <div class="mb-3">
+                        <label for="total_children" class="form-label">Total Children</label>
+                        <input type="text" autocomplete="off" class="form-control" id="total_children" value="{{ $data->total_children }}" name="total_children">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Book Room</button>
                 </form>
             </div>
         </div>
@@ -67,4 +76,32 @@
 </div>
 <!-- /.container-fluid -->
 
+    @section("scripts")
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".checkin-date").on("blur", function(){
+                    var _checkindate = $(this).val();
+
+                    $.ajax({
+                        url : "booking/" + _checkindate + "/available-rooms",
+                        date: [],
+                        type: "GET",
+                        dataType: "json",
+                        beforeSend: function(){
+                            $('.room-list').html('<option>-- Loading --</option>');
+                        },
+                        success: function(res){
+                            console.log(res);
+                            var _html='';
+                            $.each(res.data, function(index, row){
+                                _html += '<option value="'+row.id+'">'+row.title+'</option>';
+
+                            });
+                            $(".room-list").html(_html);
+                        }
+                    });
+                })
+            });
+        </script>
+    @endsection
 @endsection

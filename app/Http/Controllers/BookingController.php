@@ -67,7 +67,9 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $data = Booking::find($id);
+        return view("booking.show", ["data"=>$data]);
     }
 
     /**
@@ -78,7 +80,11 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customers = Customer::all();
+        $data = Booking::find($id);
+        $arooms = DB::SELECT("SELECT * FROM rooms WHERE id NOT IN 
+        (SELECT room_id FROM bookings WHERE '$data->checkin_date' BETWEEN checkin_date AND checkout_date)");
+        return view("booking.edit", ["data"=>$data, "customers" => $customers, "arooms"=>$arooms]);
     }
 
     /**
@@ -88,9 +94,27 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $fields, $id)
     {
-        //
+        $fields->validate([
+            'customer' => 'required',
+            'room' => 'required',
+            'checkin' => 'required',
+        ]);
+
+       
+        $data = Booking::find($id);
+
+        $data->customer_id = $fields->customer;
+        $data->room_id = $fields->room;
+        $data->checkin_date = $fields->checkin;
+        $data->checkout_date = $fields->checkout;
+        $data->total_adult = $fields->total_adult;
+        $data->total_children = $fields->total_children;
+        $data->save();
+
+        return redirect("/booking/show")->with("success", "Room Booked Successfully");
+
     }
 
     /**
@@ -101,12 +125,21 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Booking::where('id',$id)->delete();
+        return redirect("booking")->with("deleted", "Booking Deleted");
     }
 
 
     public function available_rooms(Request $request, $checkin_date){
-        $arooms = DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
+
+        // check availability of room from checkin date
+        
+        $arooms = DB::SELECT("SELECT * FROM rooms WHERE id NOT IN 
+        (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
         return response()->json(['data'=>$arooms]);
+
+        // TODO also check overlaping booking on same room
     }
+
+    // calculate days before next reservation from checkin date
 }

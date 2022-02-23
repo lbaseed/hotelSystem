@@ -19,8 +19,8 @@
         </h6>
         </div>
         <div class="card-body">
-            @if (Session::has("success"))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session("success") }} 
+            @if (Session::has("deleted"))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session("deleted") }} 
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
@@ -31,7 +31,7 @@
                             <th>#</th>
                             <th>Customer</th>
                             <th>Room</th>
-                            <th>Adult/Children</th>
+                            <th>Adult / Children</th>
                             <th>Checkin Date</th>
                             <th>Checkout Date</th>
                             <th>Action</th>
@@ -42,7 +42,7 @@
                             <th>#</th>
                             <th>Customer</th>
                             <th>Room</th>
-                            <th>Adult/Children</th>
+                            <th>Adult / Children</th>
                             <th>Checkin Date</th>
                             <th>Checkout Date</th>
                             <th>Action</th>
@@ -65,7 +65,7 @@
                                 <td>
                                     <a href="{{ url('booking/'.$item->id) }}" class="btn btn-info btn-sm mb-2 mr-2"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('booking/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></a>
-                                    <a href="{{ url('booking/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this items?')" class="btn btn-danger btn-sm mb-2 mr-2"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ url('booking/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this booking?')" class="btn btn-danger btn-sm mb-2 mr-2"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

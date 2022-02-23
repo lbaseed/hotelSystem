@@ -45,15 +45,16 @@
                         <input type="date" autocomplete="off" class="form-control checkin-date" name="checkin" id="checkin" placeholder="yyyy-mm-dd">
                     </div>
                     <div class="mb-3">
-                        <label for="checkout" class="form-label">CheckOut Date</label>
-                        <input type="date" autocomplete="off" class="form-control" name="checkout" id="checkout" placeholder="yyyy-mm-dd">
-                    </div>
-                    <div class="mb-3">
                         <label for="photo" class="form-label">Available Rooms <span class="text-danger">*</span></label>
                         <select class="form-control room-list" id="room" name="room">
 
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="checkout" class="form-label">CheckOut Date</label>
+                        <input type="date" autocomplete="off" class="form-control" name="checkout" id="checkout" placeholder="yyyy-mm-dd">
+                    </div>
+                    
                     <div class="mb-3">
                         <label for="total_adult" class="form-label">Total Adult</label>
                         <input type="text" autocomplete="off" class="form-control" id="total_adult" name="total_adult">
