@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer("room_id");
             $table->date("checkin_date");
             $table->date("checkout_date")->nullable();
-            $table->integer("total_adults");
-            $table->integer("total_children");
+            $table->integer("total_adult");
+            $table->integer("total_children")->nullable();
             $table->timestamps();
         });
     }
