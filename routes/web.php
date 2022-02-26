@@ -26,9 +26,7 @@ Route::get('logout', [AdminController::class, 'logout']);
 Route::post('login', [AdminController::class, 'check_login']);
 
 // Admin Dashbaord
-Route::get('admin', function () {
-    return view('landing');
-});
+Route::get('admin', [AdminController::class, 'index']);
 Route::get('/', [AdminController::class, 'index']);
 
 
