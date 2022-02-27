@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th>Price NGN</th>
-                                <td>{{ $data->price }}</td>
+                                <td>{{ number_format($data->price, 2) }}</td>
                             </tr>
                             <tr>
                                 <th>Gallery Images</th>

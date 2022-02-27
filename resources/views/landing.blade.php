@@ -112,7 +112,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Booking Graph</h6>
                    
                 </div>
                 <!-- Card Body -->
@@ -130,7 +130,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Room Type Booking Chart</h6>
                     
                 </div>
                 <!-- Card Body -->
@@ -139,15 +139,12 @@
                         <canvas id="myPieChart"></canvas>
                     </div>
                     <div class="mt-4 text-center small">
+                        @foreach($plabels as $key => $plabel)
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
+                            <i class="fas fa-circle" style="color: {{ $color[$key] }}"></i> {{ $plabel }}
                         </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>
@@ -314,8 +311,12 @@
 <!-- Page level plugins -->
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script type="text/javascript" >
+// line chart
     var _labels = {!! json_encode($labels) !!};
     var _data = {!! json_encode($data) !!};
+// pie chart
+    var _plabels = {!! json_encode($plabels) !!};
+    var _pdata = {!! json_encode($pdata) !!};
 </script>
 
 <!-- Page level custom scripts -->

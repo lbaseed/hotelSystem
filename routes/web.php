@@ -9,6 +9,9 @@ use App\Http\Controllers\StaffDepartment;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BookingController;
 
+// home page controllers
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +30,7 @@ Route::post('login', [AdminController::class, 'check_login']);
 
 // Admin Dashbaord
 Route::get('admin', [AdminController::class, 'index']);
-Route::get('/', [AdminController::class, 'index']);
+
 
 
 // RoomType Routes
@@ -63,3 +66,6 @@ Route::resource('booking', BookingController::class);
 Route::get('booking/{id}/delete', [BookingController::class, 'destroy']);
 Route::get('booking/{checkin_date}/available-rooms', [BookingController::class, 'available_rooms']);
 
+
+// Home Page routes
+Route::get('/', [HomeController::class, 'home']);

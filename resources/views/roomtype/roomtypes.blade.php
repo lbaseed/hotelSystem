@@ -49,7 +49,7 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->price }}</td>
+                                <td>{{ number_format($item->price, 2) }}</td>
                                 <td>{{ count($item->roomtypeimages) }}</td>
                                 <td>
                                     <a href="{{ url('roomtype/'.$item->id) }}" class="btn btn-info btn-sm mb-2 mr-2"><i class="fa fa-eye"></i></a>
