@@ -13,4 +13,5 @@ class HomeController extends Controller
         $data = RoomType::all();
         return view("home", ['roomtypes'=>$data]);
     }
+
 }

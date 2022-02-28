@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string("fullname");
-            $table->string("email");
-            $table->string("phone");
-            $table->string("address");
-            $table->string("photo");
+            $table->string("email")->nullable();
+            $table->string("phone")->unique();
+            $table->string("address")->nullable();
+            $table->string("photo")->nullable();
             $table->string("password");
             $table->timestamps();
         });

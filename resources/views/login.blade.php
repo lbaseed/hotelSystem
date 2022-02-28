@@ -60,7 +60,7 @@
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password" @if(Cookie::has('adminpwd')) value="{{ Cookie::get('adminpwd') }}"
-                                                    
+                                                     
                                                 @endif />
                                         </div>
                                         <div class="form-group">

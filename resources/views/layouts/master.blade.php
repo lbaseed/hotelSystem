@@ -14,7 +14,7 @@
 
     <title>{{ config('app.name') }}</title>
     <base href="{{ \URL::to('/') }}" />
-
+ 
     @if(!Session::has("adminData"))
         <script type="text/javascript">
             window.location.href = "{{ url('login') }}";

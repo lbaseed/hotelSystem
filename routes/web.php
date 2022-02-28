@@ -69,3 +69,8 @@ Route::get('booking/{checkin_date}/available-rooms', [BookingController::class, 
 
 // Home Page routes
 Route::get('/', [HomeController::class, 'home']);
+Route::get('cust/register', [CustomerController::class, 'register']);
+Route::get('cust/login', [CustomerController::class, 'login']);
+Route::post('cust/login', [CustomerController::class, 'check_login']);
+Route::get('cust/dash', [CustomerController::class, 'cust_dash']);
+Route::get('cust/logout', [CustomerController::class, 'logout']);

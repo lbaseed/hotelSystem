@@ -51,7 +51,7 @@ class AdminController extends Controller
     function login(){
         
         return view('login');
-        
+
     }
 
 

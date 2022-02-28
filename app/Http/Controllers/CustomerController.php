@@ -44,18 +44,28 @@ class CustomerController extends Controller
             'phone' => 'required',
         ]);
 
-        $imgpath = $fields->file('photo')->store('public/customer/images');
-        $imgpath = substr($imgpath, 7);
+        if ($fields->hasFile('photo')) {
+            $imgpath = $fields->file('photo')->store('public/customer/images');
+            $imgpath = substr($imgpath, 7);
+        }else{
+            $imgpath = "none";
+        }
         $data = new Customer;
         $data->fullname = $fields->fullname;
         $data->email = $fields->email;
         $data->phone = $fields->phone;
         $data->address = $fields->address;
         $data->photo = $imgpath;
-        $data->password = \bcrypt("password");
+        $data->password = sha1($fields->password);
         $data->save();
 
-        return redirect("/customer/create")->with("success", "Customer Added Successfully");
+        if($fields->ref == 'front'){
+            return redirect("customer/register")->with("success", "Registration successful, Please Login Now.");
+
+        }else{
+            return redirect("customer/create")->with("success", "Customer Added Successfully");
+
+        }
 
     }
 
@@ -144,5 +154,50 @@ class CustomerController extends Controller
         // now delete customer
         Customer::where('id',$id)->delete();
         return redirect("customer")->with("success", "Item Deleted Successfully");
+    }
+
+    function register(){
+        return view("front_auth.register");
+    }
+
+    function login(){
+        return view("front_auth.login");
+    }
+
+    // check customer login
+    function check_login(Request $request){
+
+        $request->validate([
+            "phone" => 'required',
+            "password" => 'required'
+        ]);
+
+        $customer = Customer::where(["phone" => $request->phone, "password" => sha1($request->password)])->count();
+        if($customer > 0){
+
+            $customerData = Customer::where(["phone" => $request->phone, "password" => sha1($request->password)])->first();
+
+            session(['customerLogin'=>true,"customerData"=>$customerData]);
+            
+            if($request->has("rememberme")){
+                Cookie::queue("phone", $request->phone, 10080);
+                Cookie::queue("custpwd", $request->password, 10080);
+            }
+            return redirect("cust/dash");
+        }else{
+            return redirect("cust/login")->with("error", "Invalid Username or Password");
+        }
+    }
+
+    // customer dashbaord after successful login
+    function cust_dash(){
+        $customerData = session()->get('customerData');
+        return view("customer.dash", ['data'=>$customerData]);
+    }
+
+    // customer logout
+    function logout(){
+        session()->forget(["customerData", "customerLogin"]);
+        return redirect("cust/login");
     }
 }
