@@ -37,6 +37,7 @@
                   <a class="nav-link" aria-current="page" href="#services">Services</a>
                   <a class="nav-link" href="#gallery">Gallery</a>
                   @if (Session::has("customerLogin"))
+                        <a class="nav-link btn btn-sm btn-success" href="cust/booking">Booking</a>
                         <a class="nav-link" href="cust/dash">Profile</a>
                         <a class="nav-link" href="cust/logout">Logout</a>
 
@@ -45,7 +46,6 @@
                         <a class="nav-link" href="cust/register">Register</a>
                   @endif
                   
-                  <a class="nav-link btn btn-sm btn-success" href="#">Booking</a>
                 </div>
               </div>
             </div>
@@ -77,7 +77,8 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 {{-- lightbox --}}
     <script src="{{ asset('vendor/lightbox/dist/js/lightbox.min.js') }}"></script>
-
+    
+    @yield("scripts")
     
     </body>
 </html>

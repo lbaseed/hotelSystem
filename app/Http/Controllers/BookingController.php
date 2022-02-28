@@ -43,8 +43,12 @@ class BookingController extends Controller
             'customer' => 'required',
             'room' => 'required',
             'checkin' => 'required',
+            'total_adult' => 'required',
         ]);
 
+        // check booking conditions
+        // 1. checkout date must be greater checkin date
+        // 2. roomtype booked must be available on the said date
        
         $data = new Booking;
         $data->customer_id = $fields->customer;
@@ -55,7 +59,11 @@ class BookingController extends Controller
         $data->total_children = $fields->total_children;
         $data->save();
 
+        if($fields->ref == 'front'){
+            return redirect("cust/booking")->with("success", "Room Booked Successfully");
+        } else{
         return redirect("/booking/create")->with("success", "Room Booked Successfully");
+        }
 
     }
 
@@ -142,4 +150,9 @@ class BookingController extends Controller
     }
 
     // calculate days before next reservation from checkin date
+
+    public function front_booking(){
+        $customer = session()->get('customerData');
+        return view("booking.form", ['customer'=>$customer]);
+    }
 }

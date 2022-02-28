@@ -74,3 +74,6 @@ Route::get('cust/login', [CustomerController::class, 'login']);
 Route::post('cust/login', [CustomerController::class, 'check_login']);
 Route::get('cust/dash', [CustomerController::class, 'cust_dash']);
 Route::get('cust/logout', [CustomerController::class, 'logout']);
+
+
+Route::get('cust/booking', [BookingController::class, 'front_booking']);
