@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- container-fluid -->
-<div class="container">
+<div class="container my-5">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Customer</h1>
@@ -16,7 +16,11 @@
         </h6>
         </div>
         <div class="card-body">
-            
+            @if (Session::has("success"))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session("success") }} 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             <div class="table-responsive col-sm-12 col-lg-8">
                 <table class="table table-borderless">
                    
@@ -51,8 +55,7 @@
                         
                     </tbody>
                 </table>
-                <a href="{{ url('cust/edit'.$data->id.'/edit') }}" class="btn btn-primary btn-lg mb-2 mr-2"><i class="fa fa-edit"></i></a>
-                <a href="{{ url('cust/delete'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-lg mb-2 mr-2"><i class="fa fa-trash"></i></a>
+                <a href="{{ url('cust/edit') }}" class="btn btn-primary btn-lg mb-2 mr-2"><i class="fa fa-edit"></i></a>
             </div>
         </div>
     </div>

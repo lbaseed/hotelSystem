@@ -155,4 +155,11 @@ class BookingController extends Controller
         $customer = session()->get('customerData');
         return view("booking.form", ['customer'=>$customer]);
     }
+
+    // customers list of bookings
+    public function front_bookings(){
+        $customer = session()->get('customerData');
+        $bookings = Booking::where('customer_id', $customer->id)->get();
+        return view("booking.list", ['customer'=>$customer, 'bookings'=>$bookings]);
+    }
 }

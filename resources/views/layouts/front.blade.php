@@ -7,9 +7,10 @@
         <title>{{ config('app.name') }}</title>
         <base href="{{ \URL::to('/') }}" />
 
-        <!-- Fonts -->
+        <!-- Fonts -->s
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        {{-- bootstrap 5 --}}
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" >
         <link href="{{ asset('vendor/lightbox/dist/css/lightbox.min.css') }}" rel="stylesheet" >
 
@@ -75,9 +76,11 @@
 
 {{-- bootstrap bundle --}}
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/booctstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 {{-- lightbox --}}
     <script src="{{ asset('vendor/lightbox/dist/js/lightbox.min.js') }}"></script>
-    
+
     @yield("scripts")
     
     </body>

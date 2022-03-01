@@ -1,18 +1,16 @@
-@extends('layouts.master')
+@extends('layouts.front')
 
 @section('content')
 
 <!-- container-fluid -->
-<div class="container-fluid">
+<div class="container my-5">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Edit Customer</h1>
+    <h1 class="h3 mb-4 text-gray-800">Edit Profile</h1>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Update {{ $data->fullname }}
-                <a href="{{ url("/customer/create") }}" class="float-right btn btn-success btn-md mr-2">Add Room</a> 
-                <a href="{{ url("/customer") }}" class="float-right btn btn-success btn-md mr-2 ml-6">View All</a>
             </h6>
         </div>
         <div class="card-body">
@@ -29,7 +27,7 @@
             </div>
             @endif
             <div class="col-sm-12 col-lg-8">
-                <form action="{{ url("customer/".$data->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url("cust/".$data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">
@@ -56,6 +54,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="ref" value="front" />
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <textarea class="form-control" id="address" name="address" rows="3">{{ $data->address }}</textarea>

@@ -60,7 +60,7 @@ class CustomerController extends Controller
         $data->save();
 
         if($fields->ref == 'front'){
-            return redirect("customer/register")->with("success", "Registration successful, Please Login Now.");
+            return redirect("cust/register")->with("success", "Registration successful, Please Login Now.");
 
         }else{
             return redirect("customer/create")->with("success", "Customer Added Successfully");
@@ -130,7 +130,16 @@ class CustomerController extends Controller
             }
         
         $data->save();
-        return redirect("/customer/$id")->with("success", "Customer updated Successfully");
+
+        if($fields->ref == 'front') {
+
+            return redirect("cust/dash")->with("success", "Customer updated Successfully");
+        
+        }else{
+        
+            return redirect("/customer/$id")->with("success", "Customer updated Successfully");
+
+        }
 
     }
 
@@ -192,12 +201,21 @@ class CustomerController extends Controller
     // customer dashbaord after successful login
     function cust_dash(){
         $customerData = session()->get('customerData');
-        return view("customer.dash", ['data'=>$customerData]);
+        $data = Customer::find($customerData->id);
+        return view("customer.dash", ['data'=>$data]);
     }
 
     // customer logout
     function logout(){
         session()->forget(["customerData", "customerLogin"]);
         return redirect("cust/login");
+    }
+
+    // edit customer info from front end
+    function cust_dash_edit(){
+
+        $customerData = session()->get('customerData');
+        $data = Customer::find($customerData->id);
+        return view("customer.front_edit", ['data'=>$data]);
     }
 }

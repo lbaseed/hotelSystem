@@ -8,7 +8,9 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Room Booking</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Room Booking
+                <a href="{{ url('cust/bookings') }}" class="float-right btn btn-sm btn-success ms-auto">View All</a>
+            </h6>
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -38,7 +40,7 @@
                         <input type="date" autocomplete="off" class="form-control checkin-date" name="checkin" id="checkin" placeholder="yyyy-mm-dd">
                     </div>
                     <div class="mb-3">
-                        <label for="photo" class="form-label">Available Rooms <span class="text-danger">*</span></label>
+                        <label for="photo" class="form-label">Available Rooms Types <span class="text-danger">*</span></label>
                         <select class="form-control room-list" id="room" name="room">
 
                         </select>

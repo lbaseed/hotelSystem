@@ -73,7 +73,10 @@ Route::get('cust/register', [CustomerController::class, 'register']);
 Route::get('cust/login', [CustomerController::class, 'login']);
 Route::post('cust/login', [CustomerController::class, 'check_login']);
 Route::get('cust/dash', [CustomerController::class, 'cust_dash']);
+Route::get('cust/edit', [CustomerController::class, 'cust_dash_edit']);
+Route::put('cust/{id}', [CustomerController::class, 'update']);
 Route::get('cust/logout', [CustomerController::class, 'logout']);
 
 
 Route::get('cust/booking', [BookingController::class, 'front_booking']);
+Route::get('cust/bookings', [BookingController::class, 'front_bookings']);
