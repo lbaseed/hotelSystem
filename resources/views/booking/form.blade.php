@@ -37,22 +37,21 @@
                     </div>
                     <div class="mb-3">
                         <label for="checkin" class="form-label">CheckIn Date <span class="text-danger">*</span></label>
-                        <input type="date" autocomplete="off" class="form-control checkin-date" name="checkin" id="checkin" placeholder="yyyy-mm-dd">
+                        <input type="date" autocomplete="off" required class="form-control checkin-date" name="checkin" id="checkin" placeholder="yyyy-mm-dd">
                     </div>
                     <div class="mb-3">
-                        <label for="photo" class="form-label">Available Rooms Types <span class="text-danger">*</span></label>
+                        <label for="checkout" class="form-label">CheckOut Date</label>
+                        <input type="date" autocomplete="off" class="form-control checkout-date" name="checkout" id="checkout" placeholder="yyyy-mm-dd">
+                    </div>
+                    <div class="mb-3">
+                        <label for="room" class="form-label">Available Rooms Types <span class="text-danger">*</span></label>
                         <select class="form-control room-list" id="room" name="room">
 
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="checkout" class="form-label">CheckOut Date</label>
-                        <input type="date" autocomplete="off" class="form-control" name="checkout" id="checkout" placeholder="yyyy-mm-dd">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="total_adult" class="form-label">Total Adult</label>
-                        <input type="text" autocomplete="off" class="form-control" id="total_adult" name="total_adult">
+                        <label for="total_adult" class="form-label">Total Adult <span class="text-danger">*</span></label>
+                        <input type="text" autocomplete="off" class="form-control" required id="total_adult" name="total_adult">
                     </div>
                     <div class="mb-3">
                         <label for="total_children" class="form-label">Total Children</label>
@@ -72,6 +71,16 @@
             $(".checkin-date").on("blur", function(){
                 var _checkindate = $(this).val();
 
+                var curDate = new Date().toISOString().slice(0, 10);
+                if(_checkindate < curDate)
+                {
+                    alert("Checkin date cannot be before today.");
+                    $(".checkin-date").val("");
+                    exit;
+
+                }
+                
+
                 $.ajax({
                     url : "booking/" + _checkindate + "/available-rooms",
                     date: [],
@@ -84,13 +93,27 @@
                         console.log(res);
                         var _html='';
                         $.each(res.data, function(index, row){
-                            _html += '<option value="'+row.id+'">'+row.title+'</option>';
+                            _html += '<option value="'+row.room.id+'">'+row.room.title+' ['+ row.roomtype.title+':: NGN'+ row.roomtype.price +']</option>';
 
                         });
                         $(".room-list").html(_html);
                     }
                 });
-            })
+            });
+
+            // checkout date checking
+
+            $(".checkout-date").on("blur", function(){
+                var _checkindate = $(".checkin-date").val();
+                var _checkoutdate = $(this).val();
+
+                if(_checkoutdate < _checkindate){
+                    alert("Checkout Date cannot be lessthan or equal to checkin date.");
+                    $(".checkout-date").val("");
+
+                }
+
+            });
         });
     </script>
     @endsection

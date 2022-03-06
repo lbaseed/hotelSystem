@@ -63,7 +63,6 @@
                     </tbody>
                 </table>
                 <a href="{{ url('booking/'.$data->id.'/edit') }}" class="btn btn-primary btn-lg mb-2 mr-2"><i class="fa fa-edit"></i></a>
-                <a href="{{ url('booking/'.$data->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this booking?')" class="btn btn-danger btn-lg mb-2 mr-2"><i class="fa fa-trash"></i></a>
             </div>
         </div>
     </div>

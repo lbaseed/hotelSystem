@@ -80,3 +80,9 @@ Route::get('cust/logout', [CustomerController::class, 'logout']);
 
 Route::get('cust/booking', [BookingController::class, 'front_booking']);
 Route::get('cust/bookings', [BookingController::class, 'front_bookings']);
+Route::get('cust/booking/{id}', [BookingController::class, 'front_booking_show']);
+Route::get('cust/booking/{id}/edit', [BookingController::class, 'front_booking_edit']);
+Route::put('cust/booking/{id}/edit', [BookingController::class, 'update']);
+Route::get('cust/booking/{id}/delete', [BookingController::class, 'destroy']);
+
+

@@ -35,16 +35,40 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                  <a class="nav-link" aria-current="page" href="#services">Services</a>
-                  <a class="nav-link" href="#gallery">Gallery</a>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
                   @if (Session::has("customerLogin"))
-                        <a class="nav-link btn btn-sm btn-success" href="cust/booking">Booking</a>
-                        <a class="nav-link" href="cust/dash">Profile</a>
-                        <a class="nav-link" href="cust/logout">Logout</a>
-
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-sm btn-success" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Book Here
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="cust/booking">Book a Room</a></li>
+                            <li><a class="dropdown-item" href="#">Book Pickup</a></li>
+                            <li><a class="dropdown-item" href="cust/bookings">All Bookings</a></li>
+                            {{-- <li><hr class="dropdown-divider"></li> --}}
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="cust/dash">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="cust/logout">Logout</a>
+                    </li>
+                    
                   @else
-                        <a class="nav-link" href="cust/login">Login</a>
+                          
+                  <li class="nav-item">
+                      <a class="nav-link" href="cust/login">Login</a>
+                  </li>
+                  <li class="nav-item">
                         <a class="nav-link" href="cust/register">Register</a>
+                  </li>
                   @endif
                   
                 </div>
@@ -76,7 +100,7 @@
 
 {{-- bootstrap bundle --}}
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/booctstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --}}
 
 {{-- lightbox --}}
     <script src="{{ asset('vendor/lightbox/dist/js/lightbox.min.js') }}"></script>

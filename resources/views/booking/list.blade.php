@@ -63,7 +63,7 @@
                                 <td>{{ $item->checkout_date }}</td>
 
                                 <td>
-                                    <a href="{{ url('cust/booking/'.$item->id) }}" class="btn btn-info btn-sm mb-2 mr-2"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ url('cust/booking/'.$item->id) }}" class="btn btn-success btn-sm mb-2 mr-2"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('cust/booking/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></a>
                                     <a href="{{ url('cust/booking/'.$item->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this booking?')" class="btn btn-danger btn-sm mb-2 mr-2"><i class="fa fa-trash"></i></a>
                                 </td>

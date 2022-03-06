@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Booking;
+use App\Models\RoomType;
+use App\Models\Room;
 
 class BookingController extends Controller
 {
@@ -108,6 +110,8 @@ class BookingController extends Controller
             'customer' => 'required',
             'room' => 'required',
             'checkin' => 'required',
+            'total_adult' => 'required',
+            
         ]);
 
        
@@ -121,8 +125,12 @@ class BookingController extends Controller
         $data->total_children = $fields->total_children;
         $data->save();
 
-        return redirect("/booking/show")->with("success", "Room Booked Successfully");
+        if ($fields->ref == 'front'){
+            return redirect("cust/booking/$id")->with("success", "Booking Updated Successfully");
 
+        }else{
+            return redirect("/booking/$id")->with("success", "Booking Updated Successfully");
+        }
     }
 
     /**
@@ -134,19 +142,28 @@ class BookingController extends Controller
     public function destroy($id)
     {
         Booking::where('id',$id)->delete();
-        return redirect("booking")->with("deleted", "Booking Deleted");
+        return redirect()->back()->with("deleted", "Booking Deleted");
     }
 
 
-    public function available_rooms(Request $request, $checkin_date){
+    public function available_rooms($checkin_date,Request $request=null){
 
         // check availability of room from checkin date
         
         $arooms = DB::SELECT("SELECT * FROM rooms WHERE id NOT IN 
-        (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
-        return response()->json(['data'=>$arooms]);
+        (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date - 1 )");
 
-        // TODO also check overlaping booking on same room
+        $data = [];
+
+        foreach ($arooms as $room) {
+            # code...
+            $roomtypes = RoomType::find($room->room_type_id);
+            $data[] = ['room'=>$room, 'roomtype'=>$roomtypes];
+
+        }
+
+        return response()->json(['data'=>$data]);
+
     }
 
     // calculate days before next reservation from checkin date
@@ -161,5 +178,24 @@ class BookingController extends Controller
         $customer = session()->get('customerData');
         $bookings = Booking::where('customer_id', $customer->id)->get();
         return view("booking.list", ['customer'=>$customer, 'bookings'=>$bookings]);
+    }
+
+    // booking edit view
+    function front_booking_edit($id){
+
+        
+        $data = Booking::find($id);
+        $customer = session()->get('customerData');
+        $rooms = $this->available_rooms($data->checkin_date);
+        // $rooms = json_decode($rooms, true);
+        return view("booking.front_booking_edit", ['data'=>$data, 'customer'=>$customer, 'arooms' => $rooms]);
+    }
+
+    // booking profile
+    function front_booking_show($id){
+
+        $data = Booking::find($id);
+        $roomtype = Room::find($data->room_id);
+        return view("booking.front_booking_show", ['data'=>$data, 'roomtype'=>$roomtype]);
     }
 }
