@@ -6,12 +6,7 @@
 
         <title>{{ config('app.name') }}</title>
         <base href="{{ \URL::to('/') }}" />
-
-        @if(!Session::has("customerLogin"))
-        <script type="text/javascript">
-            window.location.href = "{{ url('cust/login') }}";
-        </script>
-        @endif
+        
         <!-- Fonts -->s
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
