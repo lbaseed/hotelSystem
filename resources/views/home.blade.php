@@ -1,4 +1,4 @@
-@extends("layouts.front")
+@extends("layouts.front_auth")
 
 @section("content")
 
@@ -122,7 +122,7 @@
                         <p>
                             <div class="card-title"> {{ $rtype->detail }}</div>
                             <div class="card-title"> NGN {{ number_format($rtype->price, 2) }}</div>
-                            <div class="d-grid"> <button class="btn btn-success">Book a Room</button></div>
+                            <div class="d-grid"> <a href="{{ Session::has("customerLogin") ? 'cust/booking' : 'cust/register' }}" class="btn btn-success">Book a Room</a></div>
                         </p>
                     </div>
                 </div>

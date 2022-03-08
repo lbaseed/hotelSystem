@@ -168,7 +168,7 @@ class BookingController extends Controller
 
     // calculate days before next reservation from checkin date
 
-    public function front_booking(){
+    public function front_booking($room=null){
         $customer = session()->get('customerData');
         return view("booking.form", ['customer'=>$customer]);
     }
@@ -176,7 +176,9 @@ class BookingController extends Controller
     // customers list of bookings
     public function front_bookings(){
         $customer = session()->get('customerData');
-        $bookings = Booking::where('customer_id', $customer->id)->get();
+        $bookings = Booking::where('customer_id', $customer->id)
+        ->orderByDesc('checkin_date')
+        ->get();
         return view("booking.list", ['customer'=>$customer, 'bookings'=>$bookings]);
     }
 

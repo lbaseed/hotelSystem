@@ -6,6 +6,9 @@
         <h3>Register</h3>
         <div class="row justify-center mt-5">
             <div class="col-sm-12 col-lg-8">
+                <p class="mb-5">
+                    Please register an account below before booking. Thank you.
+                </p>
                 @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ $error }} 

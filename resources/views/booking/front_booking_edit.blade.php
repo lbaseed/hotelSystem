@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="container">
+    <div class="container my-5">
 
         <h1 class="h3 mb-4 text-gray-800">Booking</h1>
 

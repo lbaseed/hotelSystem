@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="container">
+    <div class="container my-5">
 
         <h1 class="h3 mb-4 text-gray-800">Booking</h1>
 
@@ -107,7 +107,7 @@
                 var _checkindate = $(".checkin-date").val();
                 var _checkoutdate = $(this).val();
 
-                if(_checkoutdate < _checkindate){
+                if(_checkoutdate <= _checkindate){
                     alert("Checkout Date cannot be lessthan or equal to checkin date.");
                     $(".checkout-date").val("");
 
